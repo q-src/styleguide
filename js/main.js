@@ -26,7 +26,7 @@
     $searchFields.typeahead({
       hint: true,
       highlight: true,
-      minLength: 1,
+      minLength: 1
     },
     {
       name: 'search',
@@ -37,7 +37,7 @@
 
   // Insert the icons
   $searchFields.after('<span class="icon icon--close" data-form-search-clear></span>');
-  $('.form-search').append('<button class="icon icon--search icon--before"></button>');
+  $('.form-search').append('<button class="icon icon--search icon--before"><span class="sr-only">Search</span></button>');
 
   $('body').on('click', '[data-form-search-clear]', function () {
     $('#search-field').val('').focus(); // clear search field and refocus it
@@ -187,6 +187,12 @@ function disableControl(element) {
         'aria-selected': 'false',
         'aria-expanded': 'false'
       });
+  });
+
+  // Ensure every first collapse toggle for accordions is accessible
+  // (cf. https://github.com/paypal/bootstrap-accessibility-plugin/issues/98):
+  $('[aria-multiselectable="true"]').each(function() {
+    console.log($(this).find('[data-toggle="collapse"][data-parent]').first().attr({tabindex: 0}));
   });
 
 }) (jQuery);
@@ -477,6 +483,113 @@ $.printPreview = {
 
 }) (jQuery);
 
+(function($) {
+  'use strict';
+
+  var datasets = [];
+  $('.dropdown.yamm-fw').each(function() {
+    var title = $('.dropdown-toggle', $(this)).html();
+    var links = $('.dropdown-menu li a', $(this));
+    var suggestions = [];
+    links.each(function() {
+        suggestions.push({
+            title: $(this).html(),
+            link: $(this).attr('href')
+        });
+    })
+    if (!suggestions.length) {
+      return;
+    }
+    var engine = new Bloodhound({
+      initialize: true,
+      local: suggestions,
+      identify: function(obj) {
+        return obj.link;
+      },
+      datumTokenizer: Bloodhound.tokenizers.obj.whitespace('title'),
+      queryTokenizer: Bloodhound.tokenizers.whitespace
+    });
+    datasets.push({
+      display: 'title',
+      source: engine,
+      templates: {
+        empty: function() {
+          return [
+            '<li><h3>',
+              title,
+            '</h3></li>',
+            '<li>',
+              window.translations['global-search']['nothing-found'],
+            '</li>',
+          ].join('');
+        },
+        header: function() {
+          return [
+            '<li><h3>',
+              title,
+            '</h3></li>'
+          ].join('');
+        },
+        dataset: '<ul><ul>',
+        suggestion: function (data) {
+          return '<li><a href="' + data.link + '">' + data.title + '</a></li>';
+        }
+      }
+    });
+  })
+
+  function initTypeahead(element) {
+    $('.search-input', element).typeahead({
+      highlight: true,
+      menu: $('.search-results .search-results-list', element),
+      classNames: {
+        suggestion: '',
+        cursor: 'active'
+      }
+    }, datasets)
+    .on('typeahead:selected', function (event, selection) {
+  		event.preventDefault();
+      $(this).typeahead('val', '')
+        .closest('.global-search').removeClass('has-input');
+  		window.location.replace(selection.link);
+  	})
+    .on('typeahead:open', function() {
+      $(this).closest('.global-search').addClass('focused');
+      console.log($(this).typeahead('val'));
+    })
+    .on('typeahead:close', function () {
+      $(this).closest('.global-search').removeClass('focused');
+    })
+    .on('keyup', function (event) {
+      var $this = $(this);
+      if (event.keyCode === 27) { // ESC
+        $(this).closest('form').trigger('reset');
+      } else if ($(this).typeahead('val')) {
+          $(this).closest('.global-search').addClass('has-input');
+      } else {
+        $(this).closest('.global-search').removeClass('has-input');
+  		}
+  	});
+
+    $('form', element)
+      .on('submit', function() {
+        return false;
+      })
+      .on('reset', function() {
+        $('.search-input', this).blur().typeahead('val', '');
+        $(this).closest('.global-search').removeClass('has-input');
+      });
+
+    $('.search-reset', element).on('click', function() {
+      $(this).closest('form').trigger('reset');
+    })
+  }
+
+  initTypeahead($('.global-search-standard'));
+  initTypeahead($('.global-search-mobile'));
+
+})(jQuery);
+
 /* ==========================================================
  * select.js
  * Scripts handling `select` elements
@@ -493,7 +606,8 @@ $.printPreview = {
 
   $(document).ready(function(){
     $('select').chosen({
-      disable_search_threshold: 10
+      disable_search_threshold: 10,
+      width: 'auto'
     });
   });
 
@@ -668,7 +782,7 @@ $.printPreview = {
     subNavInit(jQuery);
   });
 
-  $('a[href=#collapseSubNav]').on('click', function() {
+  $('a[href="#collapseSubNav"]').on('click', function() {
     $(this).attr('aria-expanded', ($(this).attr('aria-expanded') === 'true' ? 'false' : 'true') );
   });
 
@@ -678,14 +792,15 @@ function subNavInit($) {
   'use strict';
 
   var $drilldown = $('.drilldown[class*=col-]');
+  var width = Math.max(window.innerWidth, $(window).width());
 
-  if ($(window).width() <= 767 && !$drilldown.hasClass('collapse-enabled')) {
+  if (width <= 767 && !$drilldown.hasClass('collapse-enabled')) {
     $drilldown
       .addClass('collapse-enabled')
       .find('.drilldown-container')
       .addClass('collapse')
       .attr('id', 'collapseSubNav');
-  } else if ($(window).width() > 767 && $drilldown.hasClass('collapse-enabled')) {
+  } else if (width > 767 && $drilldown.hasClass('collapse-enabled')) {
     $drilldown
       .removeClass('collapse-enabled')
       .find('.drilldown-container')
