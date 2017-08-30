@@ -681,9 +681,6 @@
 			                      <li role="presentation">
 			                        <a href="../de/teaser.html#05-teaser-12-rss-feed">RSS-Feed</a>
 			                      </li>
-			                      <li role="presentation">
-			                        <a href="../de/teaser.html#05-teaser-12-twitter-timeline">Twitter Timeline</a>
-			                      </li>
 			                  </ul>
 			                </div>
 			              </li>
@@ -2224,121 +2221,6 @@
 			&lt;/div&gt;
 		&lt;/div&gt;
 
-	&lt;/div&gt;
-&lt;/div&gt;</code></pre>
-  </div>
-
-
-
-
-</article>
-
-
-<article class="component" id="05-teaser-12-twitter-timeline">
-
-  <div class="component-header clearfix">
-  	<h2 class="component-heading"><a href="#05-teaser-12-twitter-timeline" class="component-anchor">Twitter Timeline</a></h2>
-
-      <span class="component-label label label-admin">FLEX</span>
-
-    <ul class="component-nav list-inline">
-        <li><a href="/de/docs/08-translations.html" target="_blank" class="btn btn-sm btn-link icon icon--after icon--external">Übersetzungen</a></li>
-
-    </ul>
-  </div>
-  <p>Eine Twitter-Timeline zeigt die neusten Tweets eines bestimmten Twitter-Benutzers.</p>
-<p>Mit dem HTML-Tag <code>data-profile</code> wird der Twitter-Bentuzer definiert. Mit <code>data-tweet-limit</code> kann die Anzahl anzuzeigender Tweets optional limitiert werden.</p>
-
-
-  <div class="component-example">
-    <div class="clearfix">
-      <div class="row">
-	<div class="col-md-3 col-sm-3">
-		<div class="mod mod-twitterstream">
-			<div class="list-group">
-				<div class="list-group-header">
-					<h2 class="pull-left">Timeline</h2>
-				</div>
-			</div>
-			<div style="max-height: 500px" class="twitter-timeline" data-profile="BR_Sprecher"></div>
-		</div>
-	</div>
-	<div class="col-md-3 col-sm-3">
-		<div class="mod mod-twitterstream">
-			<div class="list-group">
-				<div class="list-group-header">
-					<h2 class="pull-left">Timeline (Tweet Limit: 2)</h2>
-				</div>
-			</div>
-			<div style="max-height: 500px" class="twitter-timeline" data-profile="BR_Sprecher" data-tweet-limit="2"></div>
-		</div>
-	</div>
-	<div class="col-md-3 col-sm-3">
-		<div class="mod mod-twitterstream">
-			<div class="list-group">
-				<div class="list-group-header">
-					<h2 class="pull-left">Timeline (Tweet Limit: 1)</h2>
-				</div>
-			</div>
-			<div style="max-height: 500px" class="twitter-timeline" data-profile="BR_Sprecher" data-tweet-limit="1"></div>
-		</div>
-	</div>
-	<div class="col-md-3 col-sm-3">
-		<div class="mod mod-twitterstream">
-			<div class="list-group">
-				<div class="list-group-header">
-					<h2 class="pull-left">Timeline (Tweet Limit: 0)</h2>
-				</div>
-			</div>
-			<div style="max-height: 500px" class="twitter-timeline" data-profile="BR_Sprecher" data-tweet-limit="0"></div>
-		</div>
-	</div>
-</div>
-    </div>
-    <button type="button" class="show-code" data-toggle="collapse" data-target="#code-05-teaser-12-twitter-timeline" aria-expanded="false">&lt;/&gt;</button>
-  </div>
-
-  <div class="code-block collapse" aria-expanded="false" id="code-05-teaser-12-twitter-timeline" role="note">
-    <pre><code class="language-markup">&lt;div class&#x3D;&quot;row&quot;&gt;
-	&lt;div class&#x3D;&quot;col-md-3 col-sm-3&quot;&gt;
-		&lt;div class&#x3D;&quot;mod mod-twitterstream&quot;&gt;
-			&lt;div class&#x3D;&quot;list-group&quot;&gt;
-				&lt;div class&#x3D;&quot;list-group-header&quot;&gt;
-					&lt;h2 class&#x3D;&quot;pull-left&quot;&gt;Timeline&lt;/h2&gt;
-				&lt;/div&gt;
-			&lt;/div&gt;
-			&lt;div style&#x3D;&quot;max-height: 500px&quot; class&#x3D;&quot;twitter-timeline&quot; data-profile&#x3D;&quot;BR_Sprecher&quot;&gt;&lt;/div&gt;
-		&lt;/div&gt;
-	&lt;/div&gt;
-	&lt;div class&#x3D;&quot;col-md-3 col-sm-3&quot;&gt;
-		&lt;div class&#x3D;&quot;mod mod-twitterstream&quot;&gt;
-			&lt;div class&#x3D;&quot;list-group&quot;&gt;
-				&lt;div class&#x3D;&quot;list-group-header&quot;&gt;
-					&lt;h2 class&#x3D;&quot;pull-left&quot;&gt;Timeline (Tweet Limit: 2)&lt;/h2&gt;
-				&lt;/div&gt;
-			&lt;/div&gt;
-			&lt;div style&#x3D;&quot;max-height: 500px&quot; class&#x3D;&quot;twitter-timeline&quot; data-profile&#x3D;&quot;BR_Sprecher&quot; data-tweet-limit&#x3D;&quot;2&quot;&gt;&lt;/div&gt;
-		&lt;/div&gt;
-	&lt;/div&gt;
-	&lt;div class&#x3D;&quot;col-md-3 col-sm-3&quot;&gt;
-		&lt;div class&#x3D;&quot;mod mod-twitterstream&quot;&gt;
-			&lt;div class&#x3D;&quot;list-group&quot;&gt;
-				&lt;div class&#x3D;&quot;list-group-header&quot;&gt;
-					&lt;h2 class&#x3D;&quot;pull-left&quot;&gt;Timeline (Tweet Limit: 1)&lt;/h2&gt;
-				&lt;/div&gt;
-			&lt;/div&gt;
-			&lt;div style&#x3D;&quot;max-height: 500px&quot; class&#x3D;&quot;twitter-timeline&quot; data-profile&#x3D;&quot;BR_Sprecher&quot; data-tweet-limit&#x3D;&quot;1&quot;&gt;&lt;/div&gt;
-		&lt;/div&gt;
-	&lt;/div&gt;
-	&lt;div class&#x3D;&quot;col-md-3 col-sm-3&quot;&gt;
-		&lt;div class&#x3D;&quot;mod mod-twitterstream&quot;&gt;
-			&lt;div class&#x3D;&quot;list-group&quot;&gt;
-				&lt;div class&#x3D;&quot;list-group-header&quot;&gt;
-					&lt;h2 class&#x3D;&quot;pull-left&quot;&gt;Timeline (Tweet Limit: 0)&lt;/h2&gt;
-				&lt;/div&gt;
-			&lt;/div&gt;
-			&lt;div style&#x3D;&quot;max-height: 500px&quot; class&#x3D;&quot;twitter-timeline&quot; data-profile&#x3D;&quot;BR_Sprecher&quot; data-tweet-limit&#x3D;&quot;0&quot;&gt;&lt;/div&gt;
-		&lt;/div&gt;
 	&lt;/div&gt;
 &lt;/div&gt;</code></pre>
   </div>

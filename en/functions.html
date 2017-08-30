@@ -681,9 +681,6 @@
 			                      <li role="presentation">
 			                        <a href="../en/teaser.html#05-teaser-12-rss-feed">RSS Feed</a>
 			                      </li>
-			                      <li role="presentation">
-			                        <a href="../en/teaser.html#05-teaser-12-twitter-timeline">Twitter Timeline</a>
-			                      </li>
 			                  </ul>
 			                </div>
 			              </li>
@@ -913,9 +910,29 @@
   <div class="component-example">
     <div class="clearfix">
       <div class="social-sharing">
-	<a href="#" aria-label="Facebook" class="social-sharing-facebook"></a>
-	<a href="#" aria-label="Twitter" class="social-sharing-twitter"></a>
-	<a href="#" aria-label="Google+" class="social-sharing-google"></a>
+	<a href="#" aria-label="Facebook" onclick="
+     window.open(
+       'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(location.href),
+       'twitter-share-dialog',
+       'width=626,height=436');
+     return false;">
+    <img src="/img/FB-f-Logo__blue_29.png" width="16px" height="16px" alt="Share on Facebook">
+  </a>
+	<a href="#" aria-label="Twitter" onclick="
+     window.open(
+       'http://twitter.com/share?text=You text here.&amp;url=' + encodeURIComponent(location.href),
+       'facebook-share-dialog',
+       'width=626,height=436');
+     return false;">
+   <img src="/img/Twitter_logo_blue.png" width="16px" height="16px" alt="Share on Twitter">
+  </a>
+	<a href="#" onclick="
+      window.open(
+        'https://plus.google.com/share?url=' + encodeURIComponent(location.href),
+        'google-share-dialog',
+        'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');
+      return false;">
+    <img src="https://www.gstatic.com/images/icons/gplus-16.png" alt="Share on Google+"/></a>
 </div>
     </div>
     <button type="button" class="show-code" data-toggle="collapse" data-target="#code-04-functions-02-social-sharing" aria-expanded="false">&lt;/&gt;</button>
@@ -923,9 +940,29 @@
 
   <div class="code-block collapse" aria-expanded="false" id="code-04-functions-02-social-sharing" role="note">
     <pre><code class="language-markup">&lt;div class&#x3D;&quot;social-sharing&quot;&gt;
-	&lt;a href&#x3D;&quot;#&quot; aria-label&#x3D;&quot;Facebook&quot; class&#x3D;&quot;social-sharing-facebook&quot;&gt;&lt;/a&gt;
-	&lt;a href&#x3D;&quot;#&quot; aria-label&#x3D;&quot;Twitter&quot; class&#x3D;&quot;social-sharing-twitter&quot;&gt;&lt;/a&gt;
-	&lt;a href&#x3D;&quot;#&quot; aria-label&#x3D;&quot;Google+&quot; class&#x3D;&quot;social-sharing-google&quot;&gt;&lt;/a&gt;
+	&lt;a href&#x3D;&quot;#&quot; aria-label&#x3D;&quot;Facebook&quot; onclick&#x3D;&quot;
+     window.open(
+       &#x27;https://www.facebook.com/sharer/sharer.php?u&#x3D;&#x27; + encodeURIComponent(location.href),
+       &#x27;twitter-share-dialog&#x27;,
+       &#x27;width&#x3D;626,height&#x3D;436&#x27;);
+     return false;&quot;&gt;
+    &lt;img src&#x3D;&quot;/img/FB-f-Logo__blue_29.png&quot; width&#x3D;&quot;16px&quot; height&#x3D;&quot;16px&quot; alt&#x3D;&quot;Share on Facebook&quot;&gt;
+  &lt;/a&gt;
+	&lt;a href&#x3D;&quot;#&quot; aria-label&#x3D;&quot;Twitter&quot; onclick&#x3D;&quot;
+     window.open(
+       &#x27;http://twitter.com/share?text&#x3D;You text here.&amp;amp;url&#x3D;&#x27; + encodeURIComponent(location.href),
+       &#x27;facebook-share-dialog&#x27;,
+       &#x27;width&#x3D;626,height&#x3D;436&#x27;);
+     return false;&quot;&gt;
+   &lt;img src&#x3D;&quot;/img/Twitter_logo_blue.png&quot; width&#x3D;&quot;16px&quot; height&#x3D;&quot;16px&quot; alt&#x3D;&quot;Share on Twitter&quot;&gt;
+  &lt;/a&gt;
+	&lt;a href&#x3D;&quot;#&quot; onclick&#x3D;&quot;
+      window.open(
+        &#x27;https://plus.google.com/share?url&#x3D;&#x27; + encodeURIComponent(location.href),
+        &#x27;google-share-dialog&#x27;,
+        &#x27;menubar&#x3D;no,toolbar&#x3D;no,resizable&#x3D;yes,scrollbars&#x3D;yes,height&#x3D;600,width&#x3D;600&#x27;);
+      return false;&quot;&gt;
+    &lt;img src&#x3D;&quot;https://www.gstatic.com/images/icons/gplus-16.png&quot; alt&#x3D;&quot;Share on Google+&quot;/&gt;&lt;/a&gt;
 &lt;/div&gt;</code></pre>
   </div>
 
